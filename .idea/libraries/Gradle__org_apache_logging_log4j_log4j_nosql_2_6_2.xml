@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.apache.logging.log4j:log4j-nosql:2.6.2">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-nosql/2.6.2/bc1f1088cbf7d17aca29e63a99a6bcbba49183e7/log4j-nosql-2.6.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-nosql/2.6.2/c25bf30c93019faa5f371d4b78dd92609a11bbed/log4j-nosql-2.6.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
