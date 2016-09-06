@@ -45,8 +45,7 @@ public class Freemarker {
     static {
         configuration = new Configuration(Configuration.VERSION_2_3_23);
         try {
-            logger.info(new File(Freemarker.class.getResource("/").toURI().getPath()).toString());
-            configuration.setDirectoryForTemplateLoading(new File(Freemarker.class.getResource("/").toURI().getPath() + "com/jecyhw/template"));
+            configuration.setDirectoryForTemplateLoading(new File(Freemarker.class.getResource("/").toURI().getPath() + "template"));
         } catch (IOException var1) {
             var1.printStackTrace();
         } catch (URISyntaxException e) {

@@ -9,7 +9,7 @@
        <mongo:mongo host="localhost" port="27017"/>
        <mongo:db-factory dbname="diseasePestTest" mongo-ref="mongo"/>
        <mongo:repositories base-package="com.jecyhw.repository"/>
-       <mongo:mapping-converter base-package="com.jecyhw.document"/>
+       <mongo:mapping-converter base-package="com.jecyhw.model.document"/>
 
        <bean id="mongoMappingContext" class="org.springframework.data.mongodb.core.mapping.MongoMappingContext"/>
        <bean id="defaultMongoTypeMapper" class="org.springframework.data.mongodb.core.convert.DefaultMongoTypeMapper">
@@ -23,6 +23,11 @@
               <constructor-arg name="mongoDbFactory" ref="mongoDbFactory"/>
               <constructor-arg name="mappingContext" ref="mongoMappingContext"/>
               <!--<property name="typeMapper" ref="defaultMongoTypeMapper"/>-->
+       </bean>
+
+       <bean id="gridFsTemplate" class="org.springframework.data.mongodb.gridfs.GridFsTemplate">
+              <constructor-arg ref="mongoDbFactory"/>
+              <constructor-arg ref="mappingConverter"/>
        </bean>
 
        <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">

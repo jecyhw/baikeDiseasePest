@@ -9,6 +9,8 @@
 
     <import resource="springMongo.xml"/>
     <conext:component-scan base-package="com.jecyhw.service"/>
+    <conext:component-scan base-package="com.jecyhw.repository"/>
+    <conext:component-scan base-package="com.jecyhw.transform"/>
 
 
 </beans>

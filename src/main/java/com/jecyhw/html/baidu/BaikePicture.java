@@ -1,6 +1,6 @@
 package com.jecyhw.html.baidu;
 
-import com.jecyhw.document.Picture;
+import com.jecyhw.model.document.Picture;
 import com.jecyhw.html.response.filter.Filter;
 import com.jecyhw.html.util.RequestUtil;
 import org.jsoup.nodes.Document;
@@ -42,12 +42,17 @@ public class BaikePicture {
         public List<Picture> filter() {
             List<Picture> pictures = new AlbumLinkFilter().filter();
             if (pictures.size() == 0) {
-                pictures.add(new Picture(this.url));//抓取异常,保留元抓取链接
+                Picture picture = new Picture();
+                picture.setReference(this.url);
+                pictures.add(picture);//抓取异常,保留元抓取链接
             } else {
                 for (Picture picture : pictures) {
                     try {
                         Document doc = RequestUtil.getDocument(picture.getReference());
-                        picture.setReference(doc.select("a.tool-button.origin").first().attr("href"));
+                        Element element = doc.select("a.tool-button.origin").first();
+                        if (element != null) {
+                            picture.setReference(element.attr("href"));
+                        }
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -64,7 +69,10 @@ public class BaikePicture {
                     Document doc = RequestUtil.getDocument(url);
                     Elements items = doc.select("a.pic-item");
                     for (Element item : items) {
-                        pictures.add(new Picture(item.attr("title") , BaikeConstant.ROOT_URL + item.attr("href")));//获取每张图片所在的网页
+                        Picture picture = new Picture();
+                        picture.setTitle(item.attr("title"));
+                        picture.setReference(BaikeConstant.ROOT_URL + item.attr("href"));//获取每张图片所在的网页
+                        pictures.add(picture);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -84,12 +92,15 @@ public class BaikePicture {
 
         @Override
         public Picture filter() {
+            Picture picture = new Picture();
             try {
                 Document doc = RequestUtil.getDocument(this.url);
-                return new Picture(doc.select("a.pic-item.selected").first().attr("title"), doc.select("#imgPicture").first().attr("src"));
+                picture.setTitle(doc.select("a.pic-item.selected").first().attr("title"));
+                picture.setReference(doc.select("#imgPicture").first().attr("src"));
             } catch (IOException e) {
-                return new Picture(this.url);
+                picture.setReference(this.url);
             }
+            return picture;
         }
     }
 }

@@ -1,8 +1,8 @@
 package com.jecyhw.controller;
 
-import com.jecyhw.Response.Response;
-import com.jecyhw.document.DiseasePest;
-import com.jecyhw.document.SearchError;
+import com.jecyhw.model.document.DiseasePest;
+import com.jecyhw.model.document.SearchError;
+import com.jecyhw.response.Response;
 import com.jecyhw.service.DiseasePestService;
 import com.jecyhw.service.ErrorService;
 import com.jecyhw.util.Freemarker;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.jecyhw.DiseaseDiseasePestServiceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2016-08-29T06:27:11" hostname="jecyhw" time="0.26">
+<testsuite name="com.jecyhw.DiseaseDiseasePestServiceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2016-08-29T08:14:42" hostname="jecyhw" time="0.266">
   <properties/>
-  <testcase name="test" classname="com.jecyhw.DiseaseDiseasePestServiceTest" time="0.26"/>
+  <testcase name="test" classname="com.jecyhw.DiseaseDiseasePestServiceTest" time="0.266"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

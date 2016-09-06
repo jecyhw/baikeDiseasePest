@@ -1,19 +1,10 @@
 package com.jecyhw.service;
 
-import com.jecyhw.document.SearchError;
-import com.jecyhw.repository.ErrorRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.jecyhw.model.document.SearchError;
 
 /**
- * Created by jecyhw on 16-8-29.
+ * Created by jecyhw on 16-9-6.
  */
-@Service
-public class ErrorService {
-    @Autowired
-    ErrorRepository repository;
-
-    public void save(SearchError searchError) {
-        repository.save(searchError);
-    }
+public interface ErrorService {
+    void save(SearchError searchError);
 }

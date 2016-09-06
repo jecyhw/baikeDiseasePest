@@ -11,6 +11,7 @@ import java.io.InputStream;
  * Created by jecyhw on 16-8-21.
  */
 final public class MongoGridFS {
+
     /**
      * 保存文件到mongodb的GridFS
      * @param mongoTemplate spring的MongoTemplate
@@ -25,6 +26,10 @@ final public class MongoGridFS {
         GridFS gridFS = new GridFS(db);
         GridFSInputFile gfs = gridFS.createFile(inputStream);
         gfs.setFilename(fileName);
+        int dotIndex = fileName.lastIndexOf(".");
+        if (dotIndex > -1) {
+            gfs.setContentType(fileName.substring(dotIndex) + 1);
+        }
         gfs.save();
     }
 }
