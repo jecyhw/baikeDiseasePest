@@ -14,14 +14,11 @@ import java.net.URISyntaxException;
 /**
  * Created by jecyhw on 16-8-29.
  */
-public class Freemarker {
+final public class Freemarker {
 
     final static Logger logger = LoggerFactory.getLogger(Freemarker.class);
 
     private static Configuration configuration;
-
-    public Freemarker() {
-    }
 
     private static Template getTemplate(String name) throws IOException {
         return configuration.getTemplate(name);

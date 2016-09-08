@@ -1,6 +1,6 @@
 package com.jecyhw.service;
 
-import com.jecyhw.model.document.SearchError;
+import com.jecyhw.document.SearchError;
 
 /**
  * Created by jecyhw on 16-9-6.

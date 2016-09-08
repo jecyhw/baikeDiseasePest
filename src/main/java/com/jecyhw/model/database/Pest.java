@@ -1,7 +1,7 @@
 package com.jecyhw.model.database;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.jecyhw.model.document.Picture;
+import com.jecyhw.document.Picture;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -13,7 +13,7 @@ import java.util.List;
  * Created by jecyhw on 16-9-6.
  */
 @Document(collection = "pest")
-public class Pest {
+final public class Pest {
     @Id
     private String id;
 
@@ -145,5 +145,187 @@ public class Pest {
      */
     private List<Picture> pictures;
 
+    public String getId() {
+        return id;
+    }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getChineseName() {
+        return chineseName;
+    }
+
+    public void setChineseName(String chineseName) {
+        this.chineseName = chineseName;
+    }
+
+    public String getScientificName() {
+        return scientificName;
+    }
+
+    public void setScientificName(String scientificName) {
+        this.scientificName = scientificName;
+    }
+
+    public String getKingdom() {
+        return kingdom;
+    }
+
+    public void setKingdom(String kingdom) {
+        this.kingdom = kingdom;
+    }
+
+    public String getPhylum() {
+        return phylum;
+    }
+
+    public void setPhylum(String phylum) {
+        this.phylum = phylum;
+    }
+
+    public String getSubPhylum() {
+        return subPhylum;
+    }
+
+    public void setSubPhylum(String subPhylum) {
+        this.subPhylum = subPhylum;
+    }
+
+    public String getPestClass() {
+        return pestClass;
+    }
+
+    public void setPestClass(String pestClass) {
+        this.pestClass = pestClass;
+    }
+
+    public String getPestSubClass() {
+        return pestSubClass;
+    }
+
+    public void setPestSubClass(String pestSubClass) {
+        this.pestSubClass = pestSubClass;
+    }
+
+    public String getOrder() {
+        return order;
+    }
+
+    public void setOrder(String order) {
+        this.order = order;
+    }
+
+    public String getSubOrder() {
+        return subOrder;
+    }
+
+    public void setSubOrder(String subOrder) {
+        this.subOrder = subOrder;
+    }
+
+    public String getFamily() {
+        return family;
+    }
+
+    public void setFamily(String family) {
+        this.family = family;
+    }
+
+    public String getSubFamily() {
+        return subFamily;
+    }
+
+    public void setSubFamily(String subFamily) {
+        this.subFamily = subFamily;
+    }
+
+    public String getGenus() {
+        return genus;
+    }
+
+    public void setGenus(String genus) {
+        this.genus = genus;
+    }
+
+    public String getSubGenus() {
+        return subGenus;
+    }
+
+    public void setSubGenus(String subGenus) {
+        this.subGenus = subGenus;
+    }
+
+    public String getSpecies() {
+        return species;
+    }
+
+    public void setSpecies(String species) {
+        this.species = species;
+    }
+
+    public String getSubSpecies() {
+        return subSpecies;
+    }
+
+    public void setSubSpecies(String subSpecies) {
+        this.subSpecies = subSpecies;
+    }
+
+    public String getBriefIntroduction() {
+        return briefIntroduction;
+    }
+
+    public void setBriefIntroduction(String briefIntroduction) {
+        this.briefIntroduction = briefIntroduction;
+    }
+
+    public String getDistributionArea() {
+        return distributionArea;
+    }
+
+    public void setDistributionArea(String distributionArea) {
+        this.distributionArea = distributionArea;
+    }
+
+    public String getMorphologicalCharacteristic() {
+        return morphologicalCharacteristic;
+    }
+
+    public void setMorphologicalCharacteristic(String morphologicalCharacteristic) {
+        this.morphologicalCharacteristic = morphologicalCharacteristic;
+    }
+
+    public String getOccurrenceRule() {
+        return occurrenceRule;
+    }
+
+    public void setOccurrenceRule(String occurrenceRule) {
+        this.occurrenceRule = occurrenceRule;
+    }
+
+    public String getPreventionMethod() {
+        return preventionMethod;
+    }
+
+    public void setPreventionMethod(String preventionMethod) {
+        this.preventionMethod = preventionMethod;
+    }
+
+    public String getLivingHabit() {
+        return livingHabit;
+    }
+
+    public void setLivingHabit(String livingHabit) {
+        this.livingHabit = livingHabit;
+    }
+
+    public List<Picture> getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(List<Picture> pictures) {
+        this.pictures = pictures;
+    }
 }

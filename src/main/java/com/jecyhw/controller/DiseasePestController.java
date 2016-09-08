@@ -1,7 +1,7 @@
 package com.jecyhw.controller;
 
-import com.jecyhw.model.document.DiseasePest;
-import com.jecyhw.model.document.SearchError;
+import com.jecyhw.document.DiseasePest;
+import com.jecyhw.document.SearchError;
 import com.jecyhw.response.Response;
 import com.jecyhw.service.DiseasePestService;
 import com.jecyhw.service.ErrorService;

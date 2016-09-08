@@ -1,6 +1,6 @@
 package com.jecyhw.repository;
 
-import com.jecyhw.model.document.SearchError;
+import com.jecyhw.document.SearchError;
 import org.springframework.data.repository.CrudRepository;
 
 /**

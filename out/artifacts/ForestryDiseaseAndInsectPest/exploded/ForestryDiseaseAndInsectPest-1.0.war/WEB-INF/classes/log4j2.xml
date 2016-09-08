@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration>
     <Appenders>
-        <File name="A1" fileName="logs/log4j2${date:yyyy-MM-dd}.log" append="false">
+        <File name="FILE" fileName="logs/log4j2${date:yyyy-MM-dd}.log" append="false">
             <PatternLayout pattern="%t %-5p %c{2} - %m%n"/>
         </File>
         <Console name="STDOUT" target="SYSTEM_OUT">
@@ -16,8 +16,9 @@
         <!--<Logger name="org.springframework.web" level="searchError" additivity="false">-->
             <!--&lt;!&ndash;<AppenderRef ref="MongoDbAppender"/>&ndash;&gt;-->
         <!--</Logger>-->
-        <Root level="DEBUG">
+        <Root level="INFO">
             <AppenderRef ref="STDOUT"/>
+            <AppenderRef ref="FILE"/>
         </Root>
     </Loggers>
 </Configuration>
