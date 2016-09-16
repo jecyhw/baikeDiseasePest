@@ -1,10 +1,10 @@
 package com.jecyhw.repository.custom.impl;
 
 import com.google.common.collect.ImmutableList;
-import com.jecyhw.html.util.RequestUtil;
-import com.jecyhw.model.database.Pest;
 import com.jecyhw.document.DiseasePest;
 import com.jecyhw.document.Picture;
+import com.jecyhw.html.util.RequestUtil;
+import com.jecyhw.model.database.Pest;
 import com.jecyhw.repository.DiseasePestRepository;
 import com.jecyhw.repository.custom.DiseasePestTransformRepository;
 import com.jecyhw.repository.custom.DocumentFieldRepository;
@@ -14,11 +14,11 @@ import com.jecyhw.util.MapUtil;
 import com.jecyhw.util.StringUtil;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
-import com.mongodb.gridfs.GridFSDBFile;
+import com.mongodb.gridfs.GridFSFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.mongodb.gridfs.GridFsTemplate;
+import org.springframework.data.mongodb.gridfs.GridFsOperations;
 
 import java.io.IOException;
 import java.util.*;
@@ -29,7 +29,7 @@ import java.util.*;
 public class DiseasePestRepositoryImpl implements DiseasePestTransformRepository, DocumentFieldRepository<DiseasePest> {
 
     @Autowired
-    GridFsTemplate gridFsTemplate;
+    GridFsOperations gridFsOperations;
 
     @Autowired
     DiseasePestRepository diseasePestRepository;
@@ -80,17 +80,27 @@ public class DiseasePestRepositoryImpl implements DiseasePestTransformRepository
     }
 
     private void savePictureToDatabase(Picture picture) {
-        if (picture.getFilename() != null) {
-            GridFSDBFile gridFSDBFile = gridFsTemplate.findOne(new Query(new Criteria("filename").is(picture.getFilename())));
-            if (gridFSDBFile != null) {//数据库中图片已经存在
-                return;
-            }
-        } else {
-            picture.setFilename(UUID.randomUUID() + ".jpg");
+        if (picture.getFilename() != null && gridFsOperations.findOne(Query.query(Criteria.where("_id").is(picture.getFilename()))) != null) {
+            return;
+//            GridFSDBFile gridFSDBFile = gridFsOperations.findOne(new Query(new Criteria("filename").is(picture.getFilename())));
+//            if (gridFSDBFile != null) {//数据库中图片已经存在
+//                picture.setFilename(gridFSDBFile.getId().toString());
+//                gridFSDBFile.put("filename", gridFSDBFile.getFilename().replace(".jpg", ""));
+//                gridFSDBFile.save();
+//                return;
+//            } else {
+//                if ((gridFSDBFile = gridFsOperations.findOne(Query.query(Criteria.where("_id").is(picture.getFilename())))) != null) {
+//                    gridFSDBFile.put("filename", gridFSDBFile.getFilename().replace(".jpg", ""));
+//                    gridFSDBFile.save();
+//                    return;
+//                }
+//            }
         }
         try {
+            String fileName = UUID.randomUUID().toString();
             DBObject metaDate = new BasicDBObject("title", picture.getTitle());
-            gridFsTemplate.store(RequestUtil.getResponse(picture.getReference()).body().byteStream(), picture.getFilename(), "image/jpg", metaDate);
+            GridFSFile gridFSFile = gridFsOperations.store(RequestUtil.getResponse(picture.getReference()).body().byteStream(), fileName, "image/jpg", metaDate);
+            picture.setFilename(gridFSFile.getId().toString());
         } catch (IOException e) {
             e.printStackTrace();
         }

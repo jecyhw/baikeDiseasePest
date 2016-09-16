@@ -66,47 +66,47 @@ final public class DiseasePestToPestImpl implements Transform<DiseasePest, Pest>
     }
 
     private String kingdom() {
-        return introductionStringOrListValue("界");
+        return updateFilterValue(introductionStringOrListValue("界"));
     }
 
     private String phylum() {
-        return introductionStringOrListValue("门");
+        return updateFilterValue(introductionStringOrListValue("门"));
     }
 
     private String subPhylum() {
-        return introductionStringOrListValue("亚门");
+        return updateFilterValue(introductionStringOrListValue("亚门"));
     }
 
     private String pestClass() {
-        return introductionStringOrListValue("纲");
+        return updateFilterValue(introductionStringOrListValue("纲"));
     }
 
     private String pestSubClass() {
-        return introductionStringOrListValue("亚纲");
+        return updateFilterValue(introductionStringOrListValue("亚纲"));
     }
 
     private String order() {
-        return introductionStringOrListValue("目");
+        return updateFilterValue(introductionStringOrListValue("目"));
     }
 
     private String subOrder() {
-        return introductionStringOrListValue("亚目");
+        return updateFilterValue(introductionStringOrListValue("亚目"));
     }
 
     private String family() {
-        return introductionStringOrListValue("科");
+        return updateFilterValue(introductionStringOrListValue("科"));
     }
 
     private String subFamily() {
-        return introductionStringOrListValue("亚科");
+        return updateFilterValue(introductionStringOrListValue("亚科"));
     }
 
     private String genus() {
-        return introductionStringOrListValue("属");
+        return updateFilterValue(introductionStringOrListValue("属"));
     }
 
     private String subGenus() {
-        return introductionStringOrListValue("亚属");
+        return updateFilterValue(introductionStringOrListValue("亚属"));
     }
 
     private String species() {
@@ -251,12 +251,23 @@ final public class DiseasePestToPestImpl implements Transform<DiseasePest, Pest>
 
     private String introductionStringOrListValue(Object value) {
         if (value instanceof String) {
-            return (String)value;
+            return StringUtil.removeBlank((String) value);
         } else if (value instanceof List){
             return paraListValue(value);
         } else {
             return null;
         }
+    }
+
+    private String updateFilterValue(String value) {
+        if (value == null) {
+            return value;
+        }
+        String result = StringUtil.removeBlank(value);
+        if (!result.matches("^[a-zA-Z0-9(（)）]*$")) {
+            result = result.replaceAll("[a-zA-Z0-9(（)）]", "");
+        }
+        return result;
     }
 
     private Object introductionObjectValue(String key) {

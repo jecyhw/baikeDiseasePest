@@ -15,9 +15,11 @@ public class Picture {
     String reference;
 
     /**
-     *  图片的名字(在mongo数据库的文件名字)
+     *  图片在mongo数据库的文件索引,引用的fs.files的_id
      */
     String filename;
+
+
 
     public String getTitle() {
         return title;

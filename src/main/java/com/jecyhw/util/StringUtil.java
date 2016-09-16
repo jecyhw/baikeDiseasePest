@@ -11,7 +11,10 @@ final public class StringUtil {
 
 
     static public String removeBlank(String value) {
-        return replaceBlank(value, "");
+        if (value != null) {
+            return replaceBlank(value, "");
+        }
+        return null;
     }
 
     static public String replaceBlank(String value, String replace) {

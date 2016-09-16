@@ -10,4 +10,12 @@
     <import resource="springMongo.xml"/>
     <conext:component-scan base-package="com.jecyhw.service"/>
     <conext:component-scan base-package="com.jecyhw.repository"/>
+
+    <bean id="placeholderConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:application.properties</value>
+            </list>
+        </property>
+    </bean>
 </beans>
