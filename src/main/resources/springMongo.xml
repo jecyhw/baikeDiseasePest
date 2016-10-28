@@ -9,7 +9,8 @@
        <mongo:mongo host="localhost" port="27017"/>
        <mongo:db-factory dbname="diseasePestTest" mongo-ref="mongo"/>
        <mongo:repositories base-package="com.jecyhw.repository"/>
-       <mongo:mapping-converter base-package="com.jecyhw.document"/>
+       <mongo:mapping-converter base-package="com.jecyhw.document" disable-validation="true"/>
+
 
        <bean id="mongoMappingContext" class="org.springframework.data.mongodb.core.mapping.MongoMappingContext"/>
        <bean id="defaultMongoTypeMapper" class="org.springframework.data.mongodb.core.convert.DefaultMongoTypeMapper">

@@ -18,4 +18,33 @@
             </list>
         </property>
     </bean>
+
+    <!--<bean id="freemarkerConfiguration" class="org.springframework.beans.factory.config.PropertiesFactoryBean">-->
+        <!--<property name="location" value="/WEB-INF/config/ftl/freemarker.properties"/>-->
+
+    <!--</bean>-->
+    <!--<bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">-->
+        <!--<property name="defaultEncoding" value="utf-8"/>-->
+        <!--<property name="templateLoaderPath" value="/WEB-INF/template"/>-->
+        <!--<property name="freemarkerSettings" ref="freemarkerConfiguration"/>-->
+    <!--</bean>-->
+    <!--<bean id="freeMarkerConfiguration" class="org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean">-->
+        <!--<property name="templateLoaderPath" value="file:D:/Java/workspace/project/WebContent/WEB_INF/config/template" />-->
+        <!--<property name="configLocation" value=""/>-->
+    <!--</bean>-->
+
+    <!--<bean id="configuration" class="freemarker.template.Configuration">-->
+        <!--<constructor-arg name="incompatibleImprovements" ref="version"/>-->
+        <!--<property name="dateTimeFormat" value="yyyy-MM-dd HH:mm:ss"/>-->
+        <!--<property name="dateFormat" value="yyyy-MM-dd"/>-->
+        <!--<property name="defaultEncoding" value="UTF-8"/>-->
+        <!--<property name="classicCompatible" value="true"/>-->
+
+    <!--</bean>-->
+
+    <!--<bean id="version" class="freemarker.template.Version">-->
+        <!--<constructor-arg name="major" value="2"/>-->
+        <!--<constructor-arg name="minor" value="3"/>-->
+        <!--<constructor-arg name="micro" value="23"/>-->
+    <!--</bean>-->
 </beans>

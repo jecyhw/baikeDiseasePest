@@ -13,12 +13,15 @@
     </Appenders>
 
     <Loggers>
-        <!--<Logger name="org.springframework.web" level="searchError" additivity="false">-->
-            <!--&lt;!&ndash;<AppenderRef ref="MongoDbAppender"/>&ndash;&gt;-->
-        <!--</Logger>-->
-        <Root level="INFO">
+        <Logger name="org.springframework.web" level="DEBUG" additivity="false">
+            <!--<AppenderRef ref="MongoDbAppender"/>-->
             <AppenderRef ref="STDOUT"/>
-            <AppenderRef ref="FILE"/>
-        </Root>
+            <!--<AppenderRef ref="FILE"/>-->
+        </Logger>
+
+        <!--<Root level="DEBUG">-->
+            <!--<AppenderRef ref="STDOUT"/>-->
+            <!--<AppenderRef ref="FILE"/>-->
+        <!--</Root>-->
     </Loggers>
 </Configuration>

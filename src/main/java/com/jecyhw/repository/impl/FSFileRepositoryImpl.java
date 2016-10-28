@@ -12,6 +12,7 @@ import org.springframework.data.mongodb.gridfs.GridFsOperations;
 import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Created by jecyhw on 16-9-12.
@@ -29,17 +30,28 @@ public class FSFileRepositoryImpl implements CustomFSFileRepository {
         try {
             if (!DeepZoomUtil.directoryExists(id)) {//切图不存在
                 GridFSDBFile fsdbFile = gridFsOperations.findOne(Query.query(Criteria.where("_id").is(id)));
-                FSFile fsFile = new FSFile();
-                fsFile.setMetaData(DeepZoomUtil.buildPyramid(fsdbFile.getInputStream(), id));
-                fsFile.setId(fsdbFile.getId().toString());
-                fsFile.setFilename(fsdbFile.getFilename());
-                fsdbFile.getMetaData().removeField("width");
-                fsdbFile.getMetaData().removeField("height");
-                mongoOperations.save(fsFile);
-                return fsFile;
+                if (fsdbFile != null) {
+                    FSFile fsFile = new FSFile();
+                    fsFile.setMetaData(DeepZoomUtil.buildPyramid(fsdbFile.getInputStream(), id));
+                    fsFile.setId(fsdbFile.getId().toString());
+                    fsFile.setFilename(fsdbFile.getFilename());
+                    fsdbFile.getMetaData().removeField("width");
+                    fsdbFile.getMetaData().removeField("height");
+                    mongoOperations.save(fsFile);
+                    return fsFile;
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public InputStream picture(String id) {
+        GridFSDBFile fsdbFile = gridFsOperations.findOne(Query.query(Criteria.where("_id").is(id)));
+        if (fsdbFile != null) {
+            return fsdbFile.getInputStream();
         }
         return null;
     }

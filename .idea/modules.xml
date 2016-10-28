@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ForestryDiseaseAndInsectPest.iml" filepath="$PROJECT_DIR$/ForestryDiseaseAndInsectPest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ForestryDiseaseAndInsectPest.iml" filepath="$PROJECT_DIR$/.idea/modules/ForestryDiseaseAndInsectPest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ForestryDiseaseAndInsectPest_main.iml" filepath="$PROJECT_DIR$/.idea/modules/ForestryDiseaseAndInsectPest_main.iml" group="ForestryDiseaseAndInsectPest" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ForestryDiseaseAndInsectPest_test.iml" filepath="$PROJECT_DIR$/.idea/modules/ForestryDiseaseAndInsectPest_test.iml" group="ForestryDiseaseAndInsectPest" />
     </modules>
   </component>
 </project>

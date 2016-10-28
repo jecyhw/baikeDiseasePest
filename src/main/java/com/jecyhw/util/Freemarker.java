@@ -42,6 +42,7 @@ final public class Freemarker {
     static {
         configuration = new Configuration(Configuration.VERSION_2_3_23);
         try {
+            configuration.setClassicCompatible(true);
             configuration.setDirectoryForTemplateLoading(new File(Freemarker.class.getResource("/").toURI().getPath() + "template"));
         } catch (IOException var1) {
             var1.printStackTrace();

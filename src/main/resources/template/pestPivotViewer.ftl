@@ -105,15 +105,16 @@
                         <String Value="${pest.livingHabit!?html}" />
                     </Facet>
                 </#if>
-            <#--<Facet Name="pictures">-->
-            <#--<String Value="${pest.pictures!?html}" />-->
-            <#--</Facet>-->
+                <#if (pest.pictures?size > 1) >
+                    <Facet Name="图片">
+                        <Link Name="更多" Href="morePicture/${pest.id}"/>
+                    </Facet>
+                </#if>
             </Facets>
         </Item>
     </#list>
     </Items>
     <FacetCategories>
-        <FacetCategory Name="中文学名" Type="String" p:IsFilterVisible="false" p:IsWordWheelVisible="false" p:IsMetaDataVisible="true" />
         <FacetCategory Name="拉丁学名" Type="String" p:IsFilterVisible="false" p:IsWordWheelVisible="false" p:IsMetaDataVisible="true" />
 
         <FacetCategory Name="界" Type="String" p:IsFilterVisible="true" p:IsWordWheelVisible="true" p:IsMetaDataVisible="true" />
@@ -127,6 +128,7 @@
         <FacetCategory Name="亚科" Type="String" p:IsFilterVisible="true" p:IsWordWheelVisible="true" p:IsMetaDataVisible="true" />
         <FacetCategory Name="属" Type="String" p:IsFilterVisible="true" p:IsWordWheelVisible="true" p:IsMetaDataVisible="true" />
         <FacetCategory Name="亚属" Type="String" p:IsFilterVisible="true" p:IsWordWheelVisible="true" p:IsMetaDataVisible="true" />
+        <FacetCategory Name="中文学名" Type="String" p:IsFilterVisible="true" p:IsWordWheelVisible="true" p:IsMetaDataVisible="true" />
 
         <FacetCategory Name="种" Type="String" p:IsFilterVisible="false" p:IsWordWheelVisible="false" p:IsMetaDataVisible="true" />
         <FacetCategory Name="亚种" Type="String" p:IsFilterVisible="false" p:IsWordWheelVisible="false" p:IsMetaDataVisible="true" />
@@ -136,6 +138,6 @@
         <FacetCategory Name="发生规律" Type="String" p:IsFilterVisible="false" p:IsWordWheelVisible="false" p:IsMetaDataVisible="true" />
         <FacetCategory Name="防治方法" Type="String" p:IsFilterVisible="false" p:IsWordWheelVisible="false" p:IsMetaDataVisible="true" />
         <FacetCategory Name="生活习性" Type="String" p:IsFilterVisible="false" p:IsWordWheelVisible="false" p:IsMetaDataVisible="true" />
-    <#--<FacetCategory Name="pictures" Type="String" p:IsFilterVisible="false" p:IsWordWheelVisible="false" p:IsMetaDataVisible="false" />-->
+        <FacetCategory Name="图片" Type="Link" p:IsFilterVisible="false" p:IsWordWheelVisible="false" p:IsMetaDataVisible="true" />
     </FacetCategories>
 </Collection>

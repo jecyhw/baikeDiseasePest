@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.gridfs.GridFsOperations;
 import org.springframework.stereotype.Service;
 
+import java.io.InputStream;
 import java.util.List;
 
 /**
@@ -41,8 +42,20 @@ public class PestServiceImpl implements PestService{
         return files;
     }
 
+
+
     @Override
     public List<Pest> pivotViewer() {
         return pestRepository.findByPicturesSizeNotEmpty();
+    }
+
+    @Override
+    public Pest findById(String id) {
+        return pestRepository.findOne(id);
+    }
+
+    @Override
+    public InputStream picture(String id) {
+        return fsFileRepository.picture(id);
     }
 }

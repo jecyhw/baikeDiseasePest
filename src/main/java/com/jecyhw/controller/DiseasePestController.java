@@ -2,21 +2,21 @@ package com.jecyhw.controller;
 
 import com.jecyhw.document.DiseasePest;
 import com.jecyhw.document.SearchError;
+import com.jecyhw.model.database.Pest;
 import com.jecyhw.response.Response;
 import com.jecyhw.service.DiseasePestService;
 import com.jecyhw.service.ErrorService;
 import com.jecyhw.service.PestService;
 import com.jecyhw.util.Freemarker;
 import com.jecyhw.util.StringUtil;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 
 /**
@@ -24,7 +24,6 @@ import java.util.*;
  */
 @RestController
 public class DiseasePestController {
-
     @Autowired
     DiseasePestService diseasePestService;
 
@@ -33,7 +32,6 @@ public class DiseasePestController {
 
     @Autowired
     ErrorService errorService;
-
 
     @RequestMapping(value = "")
     public ModelAndView index() {
@@ -69,9 +67,29 @@ public class DiseasePestController {
         return Freemarker.process("pestPivotViewer.ftl", root);
     }
 
-    @RequestMapping(value = "pivotviewer/", method = RequestMethod.GET)
+    @RequestMapping(value = "pivotviewer", method = RequestMethod.GET)
     public ModelAndView pivotViewer() {
         return new ModelAndView("pivotviewer");
+    }
+
+    @RequestMapping(value = "morePicture/{id}", method = RequestMethod.GET)
+    public Response<?> morePictures(@PathVariable String id) {
+        Pest pest = pestService.findById(id);
+        if (pest != null) {
+            return Response.success(pestService.findById(id));
+        } else {
+            return Response.fail("未查找到相关记录");
+        }
+    }
+
+    @RequestMapping(value = "picture/{id}")
+    @ResponseBody
+    public byte[] picture(@PathVariable String id) throws IOException {
+        InputStream in = pestService.picture(id);
+        if (in != null) {
+            return IOUtils.toByteArray(in);
+        }
+        return new byte[0];
     }
 
     private Response<?> baikeSearch(String name, DiseasePest.Type type) {
