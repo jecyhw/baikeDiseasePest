@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>虫害数据展示</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+</head>
+<body th:type="${type}">
+<div th:fragment="pivotViewer" th:remove="tag">
+    <div id="pivotViewer"></div>
+
+    <link th:href="@{/pivotviewer/content/pivotviewer-0.9.23.min.css}" href="../../resources/pivotviewer/content/pivotviewer-0.9.23.min.css" rel="stylesheet" type="text/css" />
+    <link th:href="@{/pivotviewer/content/pivotviewer-0.9.23.templates.min.html}" href="../../resources/pivotviewer/content/pivotviewer-0.9.23.templates.min.html" rel="template" id="pv-templates" />
+
+    <script type="text/javascript" th:src="@{/pivotviewer/scripts/jquery-1.8.1.min.js}" src="../../resources/pivotviewer/scripts/jquery-1.8.1.min.js"></script>
+    <script type="text/javascript" th:src="@{/pivotviewer/scripts/jquery-ui-1.10.0.custom.min.js}" src="../../resources/pivotviewer/scripts/jquery-ui-1.10.0.custom.min.js"></script>
+    <script type="text/javascript" th:src="@{/pivotviewer/scripts/modernizr.custom.js}" src="../../resources/pivotviewer/scripts/modernizr.custom.js"></script>
+    <script type="text/javascript" th:src="@{/pivotviewer/scripts/easing.min.js}" src="../../resources/pivotviewer/scripts/easing.min.js"></script>
+    <script type="text/javascript" th:src="@{/pivotviewer/scripts/jquery.mousewheel.min.js}" src="../../resources/pivotviewer/scripts/jquery.mousewheel.min.js"></script>
+    <script type="text/javascript" th:src="@{/pivotviewer/scripts/mobiscroll-2.0.2.custom.min.js}" src="../../resources/pivotviewer/scripts/mobiscroll-2.0.2.custom.min.js"></script>
+    <script type="text/javascript" th:src="@{/pivotviewer/scripts/mustache.min.js}" src="../../resources/pivotviewer/scripts/mustache.min.js"></script>
+    <script type="text/javascript" th:src="@{/pivotviewer/scripts/ICanHaz-no-mustache.min.js}" src="../../resources/pivotviewer/scripts/ICanHaz-no-mustache.min.js"></script>
+    <script type="text/javascript" th:src="@{/pivotviewer/scripts/pubsub.min.js}" src="../../resources/pivotviewer/scripts/pubsub.min.js"></script>
+    <script type="text/javascript" th:src="@{/pivotviewer/scripts/jquery.nouislider.min.js}" src="../../resources/pivotviewer/scripts/jquery.nouislider.min.js"></script>
+    <script type="text/javascript" th:src="@{/pivotviewer/scripts/pivotviewer-0.9.23.1.min.js}" src="../../resources/pivotviewer/scripts/pivotviewer-0.9.23.1.min.js"></script>
+    <script th:replace="template :: basePath"></script>
+    <script type="text/javascript">
+        //    var debug = true;
+        $(document).ready(function () {
+            $("#pivotViewer").PivotViewer({
+                Loader: new PivotViewer.Models.Loaders.CXMLLoader(addBasePath($(document.body).attr('type') + "/pivotViewer.xml")),
+                AnimateBlank: false,
+                ViewerState: "$view$=1&$facet0$=Category",
+                BaseContentPath: addBasePath("pivotviewer/content"),
+                ItemAdornerTemplate: "tile_link_adorner",
+                ItemSelectedTemplate: "tile_link_adorner",
+                AllowItemsCheck: false,
+                CopyToClipboard: true,
+                DisplayFeedback: false
+            });
+        });
+    </script>
+    <script type="text/html" id="tile_link_adorner">
+        <ul class="pv-adorner-list">
+            <li>
+                <a href="{{#Item.Facets.Session URL}}{{Href}}{{/Item.Facets.Session URL}}" target="_blank" class="pv-adorner-basiclink">{{#Item.Facets.Session URL}}{{Value}}{{/Item.Facets.Session URL}}</a>
+            </li>
+            {{#Item.Facets.Speaker}}
+            <li>
+                <a href="{{Href}}" target="_blank" class="pv-adorner-basiclink">{{Value}}</a>
+            </li>
+            {{/Item.Facets.Speaker}}
+        </ul>
+    </script>
+</div>
+</body>
+</html>

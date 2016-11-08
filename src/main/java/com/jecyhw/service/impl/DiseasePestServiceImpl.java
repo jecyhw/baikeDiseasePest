@@ -18,6 +18,7 @@ import java.util.Set;
 /**
  * Created by jecyhw on 16-8-26.
  */
+@Deprecated
 @Service
 final public class DiseasePestServiceImpl implements DiseasePestService {
 

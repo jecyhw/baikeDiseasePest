@@ -48,7 +48,7 @@ public class PestServiceImplTest {
      */
     @Test
     public void testFindByPicturesIsNotNull() throws Exception {
-        System.out.println(pestService.deepZoomFiles());
+        System.out.println(pestService.extractDeepZoomField());
 //TODO: Test goes here...
     }
 

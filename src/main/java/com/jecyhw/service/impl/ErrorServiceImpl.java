@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 /**
  * Created by jecyhw on 16-8-29.
  */
+
+@Deprecated
 @Service
 final public class ErrorServiceImpl implements ErrorService{
     @Autowired

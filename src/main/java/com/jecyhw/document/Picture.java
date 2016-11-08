@@ -19,8 +19,6 @@ public class Picture {
      */
     String filename;
 
-
-
     public String getTitle() {
         return title;
     }

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>创建病害数据</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.css}" href="../../resources/bootstrap/css/bootstrap.css" />
+    <link th:href="@{/fancybox/jquery.fancybox.css}" href="../../resources/fancybox/jquery.fancybox.css" media="screen" rel="stylesheet" type="text/css" />
+    <style>
+        .preview canvas, .preview img {
+            width: 100% !important;
+        }
+    </style>
+
+</head>
+<body th:type="${type}">
+<div th:replace="template :: header"></div>
+<div class="container">
+    <div class="page-header">
+        <h1>创建病害数据 <small></small></h1>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">基本信息填写</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <form id="info_form" th:action="@{'/' + ${type} + '/create'}" th:object="${disease}" method="post" role="form" action="/disease/create">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label" for="chineseName">中文名<span class="text-danger"> *</span></label>
+                            <input type="text" class="form-control" id="chineseName" th:field="*{chineseName}">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="pathogenicType">病原类型<span class="text-danger"> *</span></label>
+                            <input type="text" class="form-control" id="pathogenicType" th:field="*{pathogenicType}">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="briefIntroduction">简介(基本信息)<span class="text-danger"> *</span></label>
+                            <textarea class="form-control" rows="6" id="briefIntroduction" th:field="*{briefIntroduction}"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="symptom">症状(病害症状,危害情况)</label>
+                            <textarea class="form-control" rows="6" id="symptom" th:field="*{symptom}"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="occurrenceRule">发病规律(发生特点,发生规律)</label>
+                            <textarea class="form-control" rows="6" id="occurrenceRule" th:field="*{occurrenceRule}"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label" for="alias">别名</label>
+                            <input type="text" class="form-control" id="alias" th:field="*{alias}">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="pathogeny">病原(病原中文名)</label>
+                            <input type="text" class="form-control" id="pathogeny" th:field="*{pathogeny}">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" for="distributionArea">分布(分布范围)</label>
+                            <textarea class="form-control" rows="6" id="distributionArea" th:field="*{distributionArea}"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="damagePlant">为害植物(主要危害作物,寄主)</label>
+                            <textarea class="form-control" rows="6" id="damagePlant" th:field="*{damagePlant}"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" for="preventionMethod">防治方法<span class="text-danger"> *</span></label>
+                            <textarea class="form-control" rows="6" id="preventionMethod" th:field="*{preventionMethod}"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label" for="scientificName">英文名</label>
+                            <input type="text" class="form-control" id="scientificName" th:field="*{scientificName}">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="pathogenyEnglish">病原英文名(病原拉丁学名,病原学名)</label>
+                            <input type="text" class="form-control" id="pathogenyEnglish" th:field="*{pathogenyEnglish}">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="transmissionWay">传播方式(传播途径)</label>
+                            <textarea class="form-control" rows="6" id="transmissionWay" th:field="*{transmissionWay}"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="diseasePosition">为害部位(主要为害部位)</label>
+                            <textarea class="form-control" rows="6" id="diseasePosition" th:field="*{diseasePosition}"></textarea>
+                        </div>
+                        <input type="hidden" th:field="*{id}"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div th:replace="pest/create :: info_footer">
+        </div>
+    </div>
+
+    <div th:replace="pest/create :: picture_info">
+    </div>
+</div>
+<!--[if lt IE 9]>
+<script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<script th:src="@{/js/jquery.js}" src="../../resources/js/jquery.js"></script>
+<script th:src="@{/bootstrap/js/bootstrap.js}" src="../../resources/bootstrap/js/bootstrap.js"></script>
+<script th:src="@{/js/page.alert.js}" src="../../resources/js/page.alert.js"></script>
+<script th:src="@{/plupload/plupload.min.js}" src="../../resources/plupload/plupload.min.js"></script>
+<script th:src="@{/plupload/zh_CN.js}" src="../../resources/plupload/zh_CN.js"></script>
+<script th:src="@{/fancybox/jquery.fancybox.js}" src="../../resources/fancybox/jquery.fancybox.js"></script>
+<script th:src="@{/js/create.js}" src="../../resources/js/create.js"></script>
+<script th:replace="template :: basePath"></script>
+</body>
+</html>
+

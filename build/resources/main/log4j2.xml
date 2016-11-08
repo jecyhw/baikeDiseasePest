@@ -13,7 +13,7 @@
     </Appenders>
 
     <Loggers>
-        <Logger name="org.springframework.web" level="DEBUG" additivity="false">
+        <Logger name="org.springframework.web" level="ERROR" additivity="false">
             <!--<AppenderRef ref="MongoDbAppender"/>-->
             <AppenderRef ref="STDOUT"/>
             <!--<AppenderRef ref="FILE"/>-->
@@ -21,7 +21,7 @@
 
         <!--<Root level="DEBUG">-->
             <!--<AppenderRef ref="STDOUT"/>-->
-            <!--<AppenderRef ref="FILE"/>-->
+            <!--&lt;!&ndash;<AppenderRef ref="FILE"/>&ndash;&gt;-->
         <!--</Root>-->
     </Loggers>
 </Configuration>

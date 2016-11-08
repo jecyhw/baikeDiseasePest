@@ -7,7 +7,6 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -51,11 +50,11 @@
             </div>
         </div>
         <%--<div style="position: fixed;">--%>
-            <%--<c:forEach items="${diseasePests}" var="diseasePest" varStatus="status">--%>
-                <%--<a class="label label-primary" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<c:out value="${status.count}"/>" aria-expanded="true" aria-controls="collapse<c:out value="${status.count}"/>">--%>
-                    <%--${diseasePest.name}--%>
-                <%--</a>--%>
-            <%--</c:forEach>--%>
+        <%--<c:forEach items="${diseasePests}" var="diseasePest" varStatus="status">--%>
+        <%--<a class="label label-primary" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<c:out value="${status.count}"/>" aria-expanded="true" aria-controls="collapse<c:out value="${status.count}"/>">--%>
+        <%--${diseasePest.name}--%>
+        <%--</a>--%>
+        <%--</c:forEach>--%>
         <%--</div>--%>
     </div>
 </div>

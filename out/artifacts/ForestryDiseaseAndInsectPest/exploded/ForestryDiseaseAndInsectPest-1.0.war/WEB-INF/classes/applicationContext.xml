@@ -15,7 +15,58 @@
         <property name="locations">
             <list>
                 <value>classpath:application.properties</value>
+                <value>classpath:pivotViewer/deepZoomFile.properties</value>
             </list>
         </property>
     </bean>
+
+    <bean class="com.jecyhw.core.pivotviewer.DeepZoomFileTemplate">
+        <constructor-arg name="rootPath" value="${rootPath}"/>
+        <constructor-arg name="tileSize" value="${tileSize}"/>
+        <constructor-arg name="overlap" value="${overlap}"/>
+        <constructor-arg name="tileFormat" value="${tileFormat}"/>
+        <constructor-arg name="descriptorExt" value="${descriptorExt}"/>
+    </bean>
+    <bean class="com.jecyhw.core.file.GridFsFile"/>
+
+    <bean id="freemarkerConfiguration" class="org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean">
+        <!--模板所在目录-->
+        <property name="templateLoaderPath" value="classpath:template" />
+        <!--freemarker配置文件-->
+        <property name="configLocation" value="classpath:freemarker.properties"/>
+        <property name="freemarkerVariables">
+            <map>
+                <entry key="tileSize" value="${tileSize}"/>
+                <entry key="tileFormat" value="${tileFormat}"/>
+                <entry key="maxLevel" value="${maxLevel}"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean class="com.jecyhw.core.Freemarker">
+        <constructor-arg name="configuration" ref="freemarkerConfiguration"/>
+    </bean>
+
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basenames">
+            <list>
+                <value>messages/pest</value>
+            </list>
+        </property>
+        <property name="cacheSeconds" value="86400"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+    </bean>
+
+    <bean class="com.jecyhw.core.validation.MessageCodeResolver">
+        <constructor-arg ref="messageSource"/>
+    </bean>
+
+    <bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+        <property name="customEditors">
+            <map>
+                <entry key="java.lang.String" value="com.jecyhw.core.bean.EmptyAsNullStringTrimmerEditor"/>
+            </map>
+        </property>
+    </bean>
+
 </beans>

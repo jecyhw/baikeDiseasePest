@@ -11,6 +11,7 @@ import java.util.Set;
 /**
  * Created by jecyhw on 16-9-6.
  */
+@Deprecated
 public interface DiseasePestService extends DocumentFieldRepository<DiseasePest>{
 
     DiseasePest search(String word, DiseasePest.Type type) throws IOException;

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.css}" href="../resources/bootstrap/css/bootstrap.css" />
+</head>
+<body>
+<div th:replace="template :: header"></div>
+<div class="container" role="main">
+    <div class="page-header">
+        <h1>虫害数据管理</h1>
+    </div>
+    <div class="well">
+        <a class="btn btn-primary btn-lg" role="button"  th:href="@{/pest/create}" href="pest/create.html">创建</a>
+        <a class="btn btn-primary btn-lg" role="button" th:href="@{/pest/show}" href="pest/show.html">展示</a>
+    </div>
+    <div class="page-header">
+        <h1>病害数据管理</h1>
+    </div>
+    <div class="well">
+        <a class="btn btn-primary btn-lg" role="button" th:href="@{/disease/create}" href="disease/create.html">创建</a>
+        <a class="btn btn-primary btn-lg" role="button" th:href="@{/disease/create}" href="disease/create.html">展示</a>
+    </div>
+</div>
+<script th:src="@{/js/jquery.js}" src="../resources/js/jquery.js"></script>
+<script th:src="@{/bootstrap/js/bootstrap.js}" src="../resources/bootstrap/js/bootstrap.js"></script>
+</body>
+</html>

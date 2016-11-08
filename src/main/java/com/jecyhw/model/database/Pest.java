@@ -1,25 +1,21 @@
 package com.jecyhw.model.database;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.jecyhw.document.Picture;
-import org.springframework.data.annotation.Id;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
-
-import java.util.List;
 
 /**
  * Created by jecyhw on 16-9-6.
  */
 @Document(collection = "pest")
-final public class Pest {
-    @Id
-    private String id;
+final public class Pest extends BaseModel{
 
     /**
      * 中文学名
      */
+    @NotBlank
     @Indexed(unique = true)
     @Field("chinese_name")
     private String chineseName;
@@ -74,6 +70,7 @@ final public class Pest {
     /**
      * 科
      */
+    @NotBlank
     private String family;
 
     /**
@@ -85,6 +82,7 @@ final public class Pest {
     /**
      * 属
      */
+    @NotBlank
     private String genus;
 
     /**
@@ -96,6 +94,7 @@ final public class Pest {
     /**
      * 种
      */
+    @NotBlank
     private String species;
 
     /**
@@ -107,6 +106,7 @@ final public class Pest {
     /**
      * 简介
      */
+    @NotBlank
     @Field("brief_introduction")
     private String briefIntroduction;
 
@@ -119,6 +119,7 @@ final public class Pest {
     /**
      * 形态特征
      */
+    @NotBlank
     @Field("morphological_characteristic")
     private String morphologicalCharacteristic;
 
@@ -131,6 +132,7 @@ final public class Pest {
     /**
      * 防治方法
      */
+    @NotBlank
     @Field("prevention_method")
     private String preventionMethod;
 
@@ -139,19 +141,6 @@ final public class Pest {
      */
     @Field("living_habit")
     private String livingHabit;
-
-    /**
-     * 害虫图片
-     */
-    private List<Picture> pictures;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getChineseName() {
         return chineseName;
@@ -319,13 +308,5 @@ final public class Pest {
 
     public void setLivingHabit(String livingHabit) {
         this.livingHabit = livingHabit;
-    }
-
-    public List<Picture> getPictures() {
-        return pictures;
-    }
-
-    public void setPictures(List<Picture> pictures) {
-        this.pictures = pictures;
     }
 }

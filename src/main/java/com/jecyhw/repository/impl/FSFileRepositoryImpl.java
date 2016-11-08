@@ -1,8 +1,8 @@
 package com.jecyhw.repository.impl;
 
-import com.jecyhw.model.database.FSFile;
+import com.jecyhw.model.subModel.DeepZoomMetaData;
+import com.jecyhw.model.subModel.Picture;
 import com.jecyhw.repository.custom.CustomFSFileRepository;
-import com.jecyhw.util.DeepZoomUtil;
 import com.mongodb.gridfs.GridFSDBFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
@@ -11,12 +11,12 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.gridfs.GridFsOperations;
 import org.springframework.stereotype.Repository;
 
-import java.io.IOException;
 import java.io.InputStream;
 
 /**
  * Created by jecyhw on 16-9-12.
  */
+@Deprecated
 @Repository
 public class FSFileRepositoryImpl implements CustomFSFileRepository {
 
@@ -26,30 +26,14 @@ public class FSFileRepositoryImpl implements CustomFSFileRepository {
     @Autowired
     MongoOperations mongoOperations;
 
-    public FSFile deepZoomFile(String id) {
-        try {
-            if (!DeepZoomUtil.directoryExists(id)) {//切图不存在
-                GridFSDBFile fsdbFile = gridFsOperations.findOne(Query.query(Criteria.where("_id").is(id)));
-                if (fsdbFile != null) {
-                    FSFile fsFile = new FSFile();
-                    fsFile.setMetaData(DeepZoomUtil.buildPyramid(fsdbFile.getInputStream(), id));
-                    fsFile.setId(fsdbFile.getId().toString());
-                    fsFile.setFilename(fsdbFile.getFilename());
-                    fsdbFile.getMetaData().removeField("width");
-                    fsdbFile.getMetaData().removeField("height");
-                    mongoOperations.save(fsFile);
-                    return fsFile;
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public DeepZoomMetaData deepZoomFile(String fileId) {
+//
         return null;
     }
 
     @Override
-    public InputStream picture(String id) {
-        GridFSDBFile fsdbFile = gridFsOperations.findOne(Query.query(Criteria.where("_id").is(id)));
+    public InputStream picture(String fileId) {
+        GridFSDBFile fsdbFile = gridFsOperations.findOne(Query.query(Criteria.where("_id").is(fileId)));
         if (fsdbFile != null) {
             return fsdbFile.getInputStream();
         }
@@ -57,15 +41,7 @@ public class FSFileRepositoryImpl implements CustomFSFileRepository {
     }
 
     @Override
-    public void deepZoomFile(FSFile file) {
-        try {
-            String id = file.getId();
-            if (!DeepZoomUtil.fileExists(file.getId())) {//切图不存在
-                GridFSDBFile fsdbFile = gridFsOperations.findOne(Query.query(Criteria.where("_id").is(id)));
-                DeepZoomUtil.buildPyramid(fsdbFile.getInputStream(), id);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void deepZoomFile(Picture picture) {
+
     }
 }

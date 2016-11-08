@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>虫害数据展示</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+</head>
+<body th:type="${type}">
+<div th:fragment="show" th:remove="tag">
+    <div th:replace="template :: header"></div>
+    <iframe id="pivotViewer" th:src="@{'/' + (${type}) + '/pivotViewer'}" src="pivotViewer.html" width="100%" frameborder="0" style="position: fixed;"></iframe>
+
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.css}" href="../../resources/bootstrap/css/bootstrap.css" />
+    <link th:href="@{/fancybox/jquery.fancybox.css}" href="../../resources/fancybox/jquery.fancybox.css" media="screen" rel="stylesheet" type="text/css" />
+    <script th:src="@{/js/jquery.js}" src="../../resources/js/jquery.js"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.js}" src="../../resources/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" th:src="@{/fancybox/jquery.fancybox.js}" src="../../resources/fancybox/jquery.fancybox.js"></script>
+    <script th:replace="template :: basePath"></script>
+    <script>
+        $(document).ready(function () {
+            var $pivotViewer = $('#pivotViewer');
+            $(window).resize(function () {
+                $pivotViewer.height($(this).height() - 70);
+            }).resize();
+            $pivotViewer.on('load', function () {
+                $(this).contents().find('body').on("click", "a.detail-item-link[href]", function () {
+                    var href = $(this).attr("href");
+                    $.post(addBasePath(href), function (data) {
+                        if (data.code == 200) {
+                            var pestPictures = data.message;
+                            var pictures = [], len = pestPictures.length;
+                            for (var i = 0; i < len; i++) {
+                                var picture = {};
+                                picture.href = addBasePath("picture/" + pestPictures[i].fileId);
+                                picture.title = pestPictures[i].title + "(" + (i + 1) + "/" + len + ")";
+                                pictures.push(picture);
+                            }
+                            $.fancybox(pictures, {type: "image", loop: false});
+                        }
+                    });
+                    return false;
+                });
+            });
+
+        });
+    </script>
+</div>
+</body>
+</html>

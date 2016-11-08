@@ -1,25 +1,25 @@
 <script type="text/html" id="pv_template_loader">
-	<div class='pv-loading' style='top:{{top}}px;left:{{left}}px;'>
-		<img src='{{baseContentPath}}/images/loading.gif' alt='Loading' />
-	</div>
+    <div class='pv-loading' style='top:{{top}}px;left:{{left}}px;'>
+        <img src='{{baseContentPath}}/images/loading.gif' alt='Loading' />
+    </div>
 </script>
 <script type="text/html" id="pv_template_toolbar">
-	<div class='pv-toolbarpanel'>
-		{{#brandImage}}<img class='pv-toolbarpanel-brandimage' src='{{brandImage}}'></img>{{/brandImage}}
-		<span class='pv-toolbarpanel-name'>{{collectionName}}</span>
-		<span class='pv-toolbarpanel-count'>0</span>
-		<div class='pv-toolbarpanel-facetbreadcrumb'></div>
-		<div class='pv-toolbarpanel-feedback' title='Feedback &amp; Support'>
-			<img alt='Feedback &amp; Support' src='{{baseContentPath}}/images/user_comment.png'/>
-		</div>
-		<div class='pv-toolbarpanel-zoomcontrols'>
+    <div class='pv-toolbarpanel'>
+        {{#brandImage}}<img class='pv-toolbarpanel-brandimage' src='{{brandImage}}'></img>{{/brandImage}}
+        <span class='pv-toolbarpanel-name'>{{collectionName}}</span>
+        <span class='pv-toolbarpanel-count'>0</span>
+        <div class='pv-toolbarpanel-facetbreadcrumb'></div>
+        <div class='pv-toolbarpanel-feedback' title='Feedback &amp; Support'>
+            <img alt='Feedback &amp; Support' src='{{baseContentPath}}/images/user_comment.png'/>
+        </div>
+        <div class='pv-toolbarpanel-zoomcontrols'>
             <div class="pv-zoomslider-buttons"><img src='{{baseContentPath}}/images/minus.png' /></div>
-			<div class='pv-toolbarpanel-zoomslider noUiSlider'></div>
+            <div class='pv-toolbarpanel-zoomslider noUiSlider'></div>
             <div class="pv-zoomslider-buttons"><img src='{{baseContentPath}}/images/plus.png' /></div>
-		</div>
-		<div class='pv-toolbarpanel-viewcontrols'></div>
-		<div class='pv-toolbarpanel-sortcontrols'></div>
-	</div>
+        </div>
+        <div class='pv-toolbarpanel-viewcontrols'></div>
+        <div class='pv-toolbarpanel-sortcontrols'></div>
+    </div>
 </script>
 <script type="text/html" id="pv_template_mainpanel">
     <div class='pv-mainpanel' style="width:{{width}}px; height:{{mainPanel.height}}px;">
@@ -74,13 +74,13 @@
 </script>
 <script type="text/html" id="pv_template_facettype_string">
     <ul class='pv-filterpanel-accordion-facet-list'>
-    {{#facets}}
+        {{#facets}}
         <li class='pv-filterpanel-accordion-facet-list-item' id='{{itemId}}'>
             <input itemvalue='{{escapedItemFacetValue}}' itemfacet='{{escapedItemFacetName}}' facetType='String' class='pv-facet-facetitem' type='checkbox' {{#checked}}checked="checked"{{/checked}}  />
             <div class='pv-facet-facetitem-label' title='{{itemValue}}'>{{itemValue}}</div>
             <span class='pv-facet-facetitem-count' style="background-image: url('{{baseContentPath}}/images/CountGradient.png');">{{count}}</span>
         </li>
-    {{/facets}}
+        {{/facets}}
     </ul>
 </script>
 <script type="text/html" id="pv_template_facettype_number">
@@ -131,8 +131,8 @@
     <div class='pv-infopanel-heading'>{{title}}</div>
     <div class='pv-infopanel-details'>
         {{#description}}
-            <div class='pv-infopanel-detail-description' style='height:100px;'>{{description}}</div>
-            <div class='pv-infopanel-detail-description-more'>More</div>
+        <div class='pv-infopanel-detail-description' style='height:100px;'>{{description}}</div>
+        <div class='pv-infopanel-detail-description-more'>More</div>
         {{/description}}
         {{#values}}
         <div class='pv-infopanel-detail {{#alternate}}detail-dark{{/alternate}}{{^alternate}}detail-light{{/alternate}}'>

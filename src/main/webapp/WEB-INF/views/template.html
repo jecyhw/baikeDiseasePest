@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="header" th:remove="tag">
+    <link rel="stylesheet" th:href="@{/css/theme.css}" href="../resources/css/theme.css" />
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand">病虫害数据管理系统</div>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown" th:classappend="${type} == 'pest' ? 'active' : ''">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">虫害数据 <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a th:href="@{/pest/create}" href="pest/create.html">创建</a></li>
+                            <li class="divider"></li>
+                            <li><a th:href="@{/pest/show}" href="pest/show.html">展示</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" th:classappend="${type} == 'disease' ? 'active' : ''">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">病害数据 <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a th:href="@{/disease/create}" href="disease/create.html">创建</a></li>
+                            <li class="divider"></li>
+                            <li><a th:href="@{/disease/show}" href="disease/show.html">展示</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <!--<ul class="nav navbar-nav navbar-right">-->
+                <!--<li><a href="#">Default</a></li>-->
+                <!--<li class="active"><a href="./">Static top</a></li>-->
+                <!--<li><a href="#">Fixed top</a></li>-->
+                <!--</ul>-->
+            </div>
+        </div>
+    </nav>
+</div>
+
+<div th:fragment="basePath" th:remove="tag">
+    <script type="text/javascript" th:inline="javascript">
+        /*<![CDATA[*/
+        function addBasePath(suffix) {
+            return (/*[[@{/}]]*/ '/ForestryDiseaseAndInsectPest/') + suffix;
+        }
+        /*]]>*/
+    </script>
+</div>
+</body>
+</html>

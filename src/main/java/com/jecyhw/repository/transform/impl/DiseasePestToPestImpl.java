@@ -1,9 +1,9 @@
 package com.jecyhw.repository.transform.impl;
 
-import com.jecyhw.model.database.Pest;
 import com.jecyhw.document.DiseasePest;
 import com.jecyhw.document.Paragraph;
-import com.jecyhw.document.Picture;
+import com.jecyhw.model.database.Pest;
+import com.jecyhw.model.subModel.Picture;
 import com.jecyhw.repository.transform.Transform;
 import com.jecyhw.util.StringUtil;
 import org.slf4j.Logger;
@@ -334,7 +334,7 @@ final public class DiseasePestToPestImpl implements Transform<DiseasePest, Pest>
      * @param picture
      */
     private void picture(Picture picture) {
-        String link = picture.getReference();
+        String link = picture.getFileId();
         if (!linkPictures.containsKey(link)) {
             linkPictures.put(link, picture);
         }

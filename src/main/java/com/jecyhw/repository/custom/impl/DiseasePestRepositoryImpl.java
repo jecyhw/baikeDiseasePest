@@ -84,7 +84,7 @@ public class DiseasePestRepositoryImpl implements DiseasePestTransformRepository
             return;
 //            GridFSDBFile gridFSDBFile = gridFsOperations.findOne(new Query(new Criteria("filename").is(picture.getFilename())));
 //            if (gridFSDBFile != null) {//数据库中图片已经存在
-//                picture.setFilename(gridFSDBFile.getId().toString());
+//                picture.setFilename(gridFSDBFile.getFileId().toString());
 //                gridFSDBFile.put("filename", gridFSDBFile.getFilename().replace(".jpg", ""));
 //                gridFSDBFile.save();
 //                return;
